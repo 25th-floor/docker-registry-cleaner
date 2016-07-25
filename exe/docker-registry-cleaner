@@ -1,3 +1,13 @@
 #!/usr/bin/env ruby
 
-require "docker/registry/cleaner"
+require "pathname"
+bin_file = Pathname.new(__FILE__).realpath
+
+# add self to libpath
+$:.unshift File.expand_path("../../lib", bin_file)
+
+require 'docker/registry/cleaner'
+require 'docker/registry/cleaner/cli'
+
+cleaner = Docker::Registry::Cleaner::CLI.new
+cleaner.run
