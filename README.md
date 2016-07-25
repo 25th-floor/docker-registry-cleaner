@@ -6,23 +6,20 @@ TODO: Delete this and the text above, and describe your gem
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Clone this repository and execute bundler:
 
-```ruby
-gem 'docker-registry-cleaner'
 ```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install docker-registry-cleaner
+git clone git@github.com:25th-floor/docker-registry-cleaner.git
+cd docker-registry-cleaner
+bundle
+```
 
 ## Usage
 
-TODO: Write usage instructions here
+```
+export REGISTRY_BASE_PATH='https://dockerhub.example.com'
+./exe/docker-registry-cleaner
+```
 
 ## Development
 
@@ -32,10 +29,8 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/docker-registry-cleaner.
-
+Bug reports and pull requests are welcome on GitHub at https://github.com/25th-floor/docker-registry-cleaner.
 
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
