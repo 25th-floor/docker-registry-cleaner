@@ -26,7 +26,7 @@ module Docker::Registry::Cleaner
           tags = JSON.parse(tag_response.body)['tags']
           next if tags.nil?
         rescue => e
-          puts ">>> #{repo} not found" if e.http_code == 404
+          puts ">>> Repo #{repo} not found" if e.http_code == 404
           next
         end
 
@@ -58,7 +58,11 @@ module Docker::Registry::Cleaner
         # Actually delete
         remove_digests.each do |elem|
           puts "Deleting #{repo}:#{elem[:tag]} (#{elem[:digest]})"
-          RestClient.delete "#{@config.registry_base_path}/v2/#{repo}/manifests/#{elem[:digest]}"
+          begin
+            RestClient.delete "#{@config.registry_base_path}/v2/#{repo}/manifests/#{elem[:digest]}"
+          rescue => e
+            puts ">>> Failed: #{e.message}"
+          end
         end
       end
     end
