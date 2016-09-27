@@ -45,7 +45,8 @@ module Docker::Registry::Cleaner
         # Resolve digests
         remove_digests = remove_tags.map do |tag|
           begin
-            digest_response = RestClient.get "#{@config.registry_base_path}/v2/#{repo}/manifests/#{tag}"
+            digest_response = RestClient.get "#{@config.registry_base_path}/v2/#{repo}/manifests/#{tag}",
+                                             headers = {accept: 'application/vnd.docker.distribution.manifest.v2+json'}
             digest = digest_response.headers[:docker_content_digest]
           rescue => e
             puts ">>> #{repo}:#{tag} could not be resolved: #{e.message}"
