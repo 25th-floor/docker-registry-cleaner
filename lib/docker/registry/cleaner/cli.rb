@@ -1,5 +1,5 @@
 require 'rest-client'
-
+require 'json'
 require 'docker/registry/cleaner/config'
 
 module Docker::Registry::Cleaner
